@@ -32,8 +32,12 @@ ActiveRecord::Schema.define(version: 2021_06_03_191524) do
 
   create_table "measures", force: :cascade do |t|
     t.integer "time_signiture"
+    t.bigint "time_signiture_id", null: false
+    t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["song_id"], name: "index_measures_on_song_id"
+    t.index ["time_signiture_id"], name: "index_measures_on_time_signiture_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -44,6 +48,14 @@ ActiveRecord::Schema.define(version: 2021_06_03_191524) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "time_signitures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "chord_measures", "chords"
   add_foreign_key "chord_measures", "measures"
+  add_foreign_key "measures", "songs"
+  add_foreign_key "measures", "time_signitures"
 end

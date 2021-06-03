@@ -9,6 +9,8 @@
 # Songs
 Song.create(title: "Stir It Up", author: "Bob Marley", tempo: 100)
 
+# Time Signitures
+TimeSigniture.create([{name: "4/4"}, {name: "3/4"}, {name:"2/4"}, {name: "5/4"}, {name: "6/4"}])
 
 # Chords
 # Major Triads
