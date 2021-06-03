@@ -5,12 +5,12 @@ class ChordsController < ApplicationController
   def index
     @chords = Chord.all
 
-    render json: @chords
+    render json: ChordSerializer.new(@chords)
   end
 
   # GET /chords/1
   def show
-    render json: @chord
+    render json: ChordSerializer.new(@chord)
   end
 
   # POST /chords
