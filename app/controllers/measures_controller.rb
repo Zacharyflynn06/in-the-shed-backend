@@ -5,12 +5,12 @@ class MeasuresController < ApplicationController
   def index
     @measures = Measure.all
 
-    render json: @measures
+    render json: MeasureSerializer.new(@measures)
   end
 
   # GET /measures/1
   def show
-    render json: @measure
+    render json: MeasureSerializer.new(@measure)
   end
 
   # POST /measures

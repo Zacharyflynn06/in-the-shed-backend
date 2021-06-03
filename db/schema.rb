@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_191021) do
+ActiveRecord::Schema.define(version: 2021_06_01_220427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chords", force: :cascade do |t|
+    t.string "quality"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "measures", force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.bigint "chord_id", null: false
+    t.integer "time_signiture"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chord_id"], name: "index_measures_on_chord_id"
+    t.index ["song_id"], name: "index_measures_on_song_id"
+  end
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
@@ -23,4 +39,6 @@ ActiveRecord::Schema.define(version: 2021_06_01_191021) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "measures", "chords"
+  add_foreign_key "measures", "songs"
 end
