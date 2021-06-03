@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Songs
-Song.create()
+Song.create(title: "Stir It Up", author: "Bob Marley", tempo: 100)
 
 
 # Chords
