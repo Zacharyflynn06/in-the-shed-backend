@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Songs
+Song.create()
+
+
 # Chords
 # Major Triads
 Chord.create([{name: "A" }, {name: "A#"}, {name: "Bb"}, {name: "B"}, {name: "C"}, {name: "C#"}, {name: "Db"}, {name: "D"}, {name: "D#"}, {name: "Eb"}, {name: "E"}, {name: "F"}, {name: "F#"}, {name: "Gb"}, {name: "G"}, {name: "G#"}])

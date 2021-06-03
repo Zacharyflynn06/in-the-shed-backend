@@ -1,4 +1,4 @@
 class Chord < ApplicationRecord
-    has_many :measures
-    has_many :songs, through: :measures
+    has_many :chord_measures
+    has_many :chords, through: :chord_measures
 end

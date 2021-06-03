@@ -1,4 +1,4 @@
 class Measure < ApplicationRecord
-  belongs_to :song
-  belongs_to :chord
+  has_many :chord_measures
+  has_many :chords, throuh: :chord_measures
 end

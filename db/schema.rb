@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_220427) do
+ActiveRecord::Schema.define(version: 2021_06_03_191524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chord_measures", force: :cascade do |t|
+    t.bigint "chord_id", null: false
+    t.bigint "measure_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chord_id"], name: "index_chord_measures_on_chord_id"
+    t.index ["measure_id"], name: "index_chord_measures_on_measure_id"
+  end
 
   create_table "chords", force: :cascade do |t|
     t.string "name"
@@ -22,13 +31,9 @@ ActiveRecord::Schema.define(version: 2021_06_01_220427) do
   end
 
   create_table "measures", force: :cascade do |t|
-    t.bigint "song_id", null: false
-    t.bigint "chord_id", null: false
     t.integer "time_signiture"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["chord_id"], name: "index_measures_on_chord_id"
-    t.index ["song_id"], name: "index_measures_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -39,6 +44,6 @@ ActiveRecord::Schema.define(version: 2021_06_01_220427) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "measures", "chords"
-  add_foreign_key "measures", "songs"
+  add_foreign_key "chord_measures", "chords"
+  add_foreign_key "chord_measures", "measures"
 end
