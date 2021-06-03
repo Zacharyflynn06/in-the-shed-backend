@@ -1,4 +1,4 @@
 class ChordSerializer
   include JSONAPI::Serializer
-  attributes :quality
+  attributes :name
 end

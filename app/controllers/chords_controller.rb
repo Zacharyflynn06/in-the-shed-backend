@@ -46,6 +46,6 @@ class ChordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chord_params
-      params.require(:chord).permit(:quality)
+      params.require(:chord).permit(:name)
     end
 end
