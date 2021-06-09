@@ -1,5 +1,5 @@
 class TimeSignitureSerializer
     include JSONAPI::Serializer
-    attributes :name
+    attributes :name, except: [:created_at, :updated_at]
 end
   

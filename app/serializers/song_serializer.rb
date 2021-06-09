@@ -1,13 +1,14 @@
 class SongSerializer
   include JSONAPI::Serializer
   attributes :title, :author, :tempo, :id
-  has_many :measures, except: [:created_at, :updated_at]
+  has_one :time_signiture, except: [:created_at, :updated_at]
+  has_many :measures
 
   def measures
     self.object.measures.map do |m|
       {
         chords: m.chords,
-        time_signiture: m.time_signiture.name
+
       }
     end
   end
