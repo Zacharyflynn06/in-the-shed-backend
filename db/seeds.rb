@@ -6,8 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#User
+User.create(first_name: "Zac", last_name: "Flynn")
+
 # Songs
-Song.create(title: "Stir It Up", author: "Bob Marley", tempo: 100)
+Song.create(title: "Stir It Up", author: "Bob Marley", tempo: 100, user_id: 1)
 
 # Time Signitures
 TimeSigniture.create([{name: "4/4"}, {name: "3/4"}, {name:"2/4"}, {name: "5/4"}, {name: "6/4"}])
