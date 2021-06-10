@@ -39,11 +39,11 @@ ActiveRecord::Schema.define(version: 2021_06_09_183105) do
 
   create_table "song_time_sigs", force: :cascade do |t|
     t.bigint "song_id"
-    t.bigint "time_signiture_id"
+    t.bigint "time_signature_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["song_id"], name: "index_song_time_sigs_on_song_id"
-    t.index ["time_signiture_id"], name: "index_song_time_sigs_on_time_signiture_id"
+    t.index ["time_signature_id"], name: "index_song_time_sigs_on_time_signature_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_183105) do
     t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
-  create_table "time_signitures", force: :cascade do |t|
+  create_table "time_signatures", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
