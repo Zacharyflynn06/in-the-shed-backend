@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2021_06_09_183105) do
 
   create_table "chords", force: :cascade do |t|
     t.string "name"
+    t.string "root"
+    t.string "quality"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -63,8 +65,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_183105) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
