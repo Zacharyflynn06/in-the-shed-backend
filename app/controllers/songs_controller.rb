@@ -15,12 +15,26 @@ class SongsController < ApplicationController
 
   # POST /songs
   def create
-    @song = Song.new(song_params)
+    song = Song.create(song_params)
+    song.time_signature = TimeSignature.find_or_create_by(name: params[:time_signature])
+    params[:measures].each do |measure|
+      
+      chord = Chord.find_or_create_by(
+        name: measure[:name], 
+        root: measure[:root],
+        quality: measure[:quality]
+      )
 
-    if @song.save
-      render json: @song, status: :created, location: @song
+
+      m = Measure.create(song_id: song.id)
+      m.chords << chord
+    end
+    
+    
+    if song
+      render json: song, status: :created, location: song
     else
-      render json: @song.errors, status: :unprocessable_entity
+      render json: song.errors, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +60,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.require(:song).permit(:title, :author, :tempo, :user_id, :time_signature)
+      params.require(:song).permit(:title, :author, :tempo, :user_id, :time_signature, :measures)
     end
 end

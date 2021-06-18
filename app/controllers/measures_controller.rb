@@ -46,6 +46,6 @@ class MeasuresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def measure_params
-      params.require(:measure).permit(:song_id, :chord_id, :time_signiture)
+      params.require(:measure).permit(:song_id, :chord_id)
     end
 end
