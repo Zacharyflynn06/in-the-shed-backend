@@ -15,8 +15,9 @@ class SongsController < ApplicationController
 
   # POST /songs
   def create
-    song = Song.create(song_params)
-    song.time_signature = TimeSignature.find_or_create_by(name: params[:time_signature])
+    @song = Song.create(song_params)
+    @song.time_signature = TimeSignature.find_or_create_by(name: params[:time_signature])
+
     params[:measures].each do |measure|
       
       chord = Chord.find_or_create_by(
@@ -24,17 +25,15 @@ class SongsController < ApplicationController
         root: measure[:root],
         quality: measure[:quality]
       )
-
-
-      m = Measure.create(song_id: song.id)
+      m = Measure.create(song_id: @song.id)
       m.chords << chord
     end
     
     
     if song
-      render json: song, status: :created, location: song
+      render json: @song, status: :created, location: @song
     else
-      render json: song.errors, status: :unprocessable_entity
+      render json: @song.errors, status: :unprocessable_entity
     end
   end
 
@@ -49,8 +48,13 @@ class SongsController < ApplicationController
 
   # DELETE /songs/1
   def destroy
-    @song.destroy
+    if @song.destroy
+      render json: {message: "Song was deleted!"}
+    else
+      render json: {message: "Something went wrong! Errors: #{@song.errors.full_messages}"}
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
