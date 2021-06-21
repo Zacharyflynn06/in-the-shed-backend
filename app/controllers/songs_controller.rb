@@ -30,8 +30,8 @@ class SongsController < ApplicationController
     end
     
     
-    if song
-      render json: @song, status: :created, location: @song
+    if @song
+      render json: SongSerializer.new(@song), status: :created, location: @song
     else
       render json: @song.errors, status: :unprocessable_entity
     end
@@ -39,8 +39,25 @@ class SongsController < ApplicationController
 
   # PATCH/PUT /songs/1
   def update
+    i = 0
+    @song.measures.each do |m|
+      if params[:measures][i]
+        m.chords = []
+        chord = Chord.find_or_create_by(
+          name: params[:measures][i][:name], 
+          root: params[:measures][i][:root],
+          quality: params[:measures][i][:quality]
+        )
+        m.chords << chord
+        i += 1
+      else
+         m.destroy
+      end
+    end
+
+  
     if @song.update(song_params)
-      render json: @song
+      render json: SongSerializer.new(@song)
     else
       render json: @song.errors, status: :unprocessable_entity
     end
