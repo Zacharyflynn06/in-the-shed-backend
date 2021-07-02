@@ -20,11 +20,13 @@ Load the repo on your system
 
 Run Bundle install in your terminal to install all required gems.
 
+Run rails db:create to create the database.
+
 Run rails db:migrate, and rails db:seed to set up the database
 
 Create a .env file in the root of the directory, and inside create a session secret like this SESSION_SECRET = "this is your secret"
 
-Run 'rails s' in your terminal to create a local environment to run the app in your browser at http://localhost:3000/
+Run 'rails s' in your terminal to create a local environment.  The frontend will depend on this server to communicate!
 
 ## Contributors Guide
 
